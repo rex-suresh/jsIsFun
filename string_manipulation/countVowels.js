@@ -1,5 +1,5 @@
 const isVowel = function (letter) {
-  return (letter === "a") || (letter === "e") || (letter === "i") || (letter === "o") || (letter === "u");
+  return "aeiou".includes(letter);
 };
 
 const countVowels = function (word) {
