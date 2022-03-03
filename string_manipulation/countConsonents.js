@@ -2,13 +2,16 @@ const isVowel = function (letter) {
   return "aeiou".includes(letter.toLowerCase());
 };
 
-const countVowels = function (word) {
+const countConsonents = function (word) {
   let vowelCount = 0;
 
   for (let index = 0; index < word.length; index++) {
+    // if (isVowel(word[index])) {
+    //   vowelCount++;
+    // };
     vowelCount += (isVowel(word[index])) ? 1 : 0;
   };
-  return vowelCount;
+  return word.length - vowelCount;
 };
 
 const testIsVowel = function (letter, expectedReturn, message) {
@@ -19,8 +22,8 @@ const testIsVowel = function (letter, expectedReturn, message) {
   return passResult;
 };
 
-const testCountVowels = function (word, expectedReturn, message) {
-  const passResult = (countVowels(word) === expectedReturn);
+const testCountConsonents = function (word, expectedReturn, message) {
+  const passResult = (countConsonents(word) === expectedReturn);
   const mark = passResult ? "✓" : "x";
 
   console.log(mark, " - ", message);
@@ -40,14 +43,14 @@ const isVowelTests = function () {
   testIsVowel("z", false, "A consonet z");
 };
 
-const countVowelsTests = function () {
-  console.log("\ncountVowels function Test : ");
+const countConsonentsTests = function () {
+  console.log("\ncountConsonents function Test : ");
   
-  testCountVowels("aa",2,"Vowel repeated twice 'aa'");
-  testCountVowels("be",1,"A vowel and a consonent 'be'");
-  testCountVowels("sky",0,"No vowels 'sky'");
-  testCountVowels("audio",4,"4 vowels and a consonent 'audio'");
+  testCountConsonents("aa",0,"No consonents,a vowel repeated twice 'aa'");
+  testCountConsonents("be",1,"A consonent, and a vowel 'be'");
+  testCountConsonents("sky",3,"String with 3 consonents 'sky'");
+  testCountConsonents("audio",1,"String with 1 consonent, remaining vowels 'audio'");
 };
 
 isVowelTests();
-countVowelsTests();
+countConsonentsTests();
